@@ -13,6 +13,7 @@
     "babel-plugin-styled-components": "^1.11.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "styled-components": "^5.1.1",
     "styled-icons": "^10.14.1",
@@ -40,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^5.1.2",
     "customize-cra": "^1.0.0",
     "react-app-rewired": "^2.1.6"

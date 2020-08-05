@@ -21,9 +21,18 @@ export default createGlobalStyle`
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
   }
 
+  button {
+    cursor: pointer;
+  }
+
+  html {
+    background: var(--primary);
+  }
+
   :root {
     --primary: #111;
+    --secondary: #333;
     --title: #C80064;
-    --text: #EEE;
+    --text: #DDD;
   }
 `

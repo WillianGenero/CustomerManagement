@@ -1,3 +1,6 @@
 export {
-  Home
-} from 'styled-icons/material-outlined'
+  ArrowDown,
+  ArrowUp,
+  Edit,
+  Trash
+} from 'styled-icons/feather'
