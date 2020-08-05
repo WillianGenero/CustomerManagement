@@ -3,6 +3,13 @@ import knex from '../database/connection'
 import connection from '../database/connection'
 
 interface user {
+  state: string,
+  district: string,
+  street: string,
+  number: number,
+  complement: string,
+  typeAddress: number,
+  city: string,
   id: number,
   name: string,
   cpf: string,
@@ -24,22 +31,37 @@ interface address {
 
 const CustomersController = {
   async index (request: Request, response: Response) {
-    const users = await connection('customers').select('*')
+    const users = await connection('customers')
+      .join('address', 'customers.id', '=', 'address.customer_id')
+      .select('customers.*',
+        'address.cep',
+        'address.city',
+        'address.state',
+        'address.district',
+        'address.street',
+        'address.number',
+        'address.complement',
+        'address.typeAddress')
 
-    var user = users.map(async (user: user) => {
-      const address = await connection('address')
-        .where('customer_id', user.id)
-        .select('*')
-        .then(response => {
-          return {
-            ...user,
-            address: response
-          }
-        })
-      return response.json(address)
+    const customers = users.map((user: user) => {
+      return {
+        id: user.id,
+        name: user.name,
+        cpf: user.cpf,
+        address: [{
+          city: user.city,
+          cep: user.cep,
+          state: user.state,
+          district: user.district,
+          street: user.street,
+          number: user.number,
+          complement: user.complement,
+          type: user.typeAddress,
+        }]
+      }
     })
 
-    return response.status(200)
+    return response.json(customers)
   },
 
   async create (request: Request, response: Response) {
