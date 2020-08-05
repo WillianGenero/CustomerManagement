@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const Container = styled.div`
@@ -32,5 +33,33 @@ export const List = styled.ul`
 
   @media (min-width: 800px) {
     grid-template-columns: repeat(2, 1fr);
+  }
+`
+
+export const NewCustomer = styled(Link)`
+  width: 25%;
+  height: 60px;
+  line-height: 60px;
+
+  border-radius: 8px;
+  background: var(--title);
+  color: #FFF;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  display: inline-block;
+  align-self: center;
+  text-align: center;
+  text-decoration: none;
+
+  transition: filter 0.2s;
+
+  position: fixed;
+  bottom: 50px;
+  left: 40%;
+
+  :hover {
+    opacity: 0.8;
   }
 `

@@ -2,7 +2,7 @@ import React from 'react'
 
 import Customer from '../../Components/Customer'
 
-import { Container, Apresentation, List } from './styles'
+import { Container, Apresentation, List, NewCustomer } from './styles'
 
 const Feed: React.FC = () => {
 
@@ -18,6 +18,8 @@ const Feed: React.FC = () => {
         <Customer />
         <Customer />
       </List>
+
+      <NewCustomer to='/customer'>Cadastrar novo cliente</NewCustomer>
     </Container>
   )
 }
