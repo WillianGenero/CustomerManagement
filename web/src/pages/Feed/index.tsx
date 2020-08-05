@@ -9,7 +9,8 @@ const Feed: React.FC = () => {
   return (
     <Container>
       <Apresentation>
-        Olá Maria, seja bem vinda novamente!
+        <strong>Olá Maria, seja bem vinda novamente!</strong><br />
+        <span>Confira seus clientes</span>
       </Apresentation>
 
       <List>

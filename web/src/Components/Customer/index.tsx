@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 
-import { Item, Label, AddressButton, DeleteButton, EditButton, EditIcon, TrashIcon, ArrowDownIcon, ArrowUpIcon } from './styles';
+import { Item, Label, AddressButton, DeleteButton, EditButton, EditIcon, TrashIcon, ArrowDownIcon, ArrowUpIcon, Address, Alert } from './styles';
 
 const Customer: React.FC = () => {
   const [openAddress, setOpenAddress] = useState(false)
+  const [openDelete, setOpenDelete] = useState(false)
 
   const data = {
     name: 'Willian Bordignon Genero',
@@ -21,8 +22,9 @@ const Customer: React.FC = () => {
         street: 'Rua Visconde de Cairu',
         number: 310,
         complement: 'D, Apt 404',
-        typeAddress: 1,
-        customer_id: 3
+        typeAddress: 'Residencial',
+        customer_id: 3,
+        main: true
       },
       {
         id: 4,
@@ -33,8 +35,9 @@ const Customer: React.FC = () => {
         street: 'Rua Angelo Lunedo',
         number: 310,
         complement: 'NA',
-        typeAddress: 1,
-        customer_id: 3
+        typeAddress: 'Casa de Praia',
+        customer_id: 3,
+        main: false
       }
     ]
   }
@@ -58,6 +61,27 @@ const Customer: React.FC = () => {
         <span>{data.phone}</span>
       </Label>
 
+      {
+        openAddress &&
+        data.address.map((local, index) => (
+          <Address
+            key={index}
+          >
+            <hr />
+            <h3>Endereço { local.main ? 'principal' : 'secundário' }</h3>
+            <Label>
+              <span>{local.street} - {local.number} {local.complement}</span>
+            </Label>
+            <Label>
+              <span>{local.district}, {local.city} - {local.state}</span>
+            </Label>
+            <Label>
+              <span>{local.cep} - {local.typeAddress}</span>
+            </Label>
+          </Address>
+        ))
+      }
+
       <AddressButton
         onClick={() => setOpenAddress(!openAddress)}
       >
@@ -67,12 +91,27 @@ const Customer: React.FC = () => {
           : <> Ver mais <ArrowDownIcon /> </>
         }
       </AddressButton>
+
       <EditButton>
         <EditIcon />
       </EditButton>
-      <DeleteButton>
+
+      <DeleteButton
+        onClick={() => setOpenDelete(!openDelete)}
+      >
         <TrashIcon />
       </DeleteButton>
+
+      {
+        openDelete &&
+        <Alert>
+          <span>Deseja mesmo apagar?</span>
+          <div>
+            <button onClick={() => setOpenDelete(false)}>Cancelar</button>
+            <button>Sim</button>
+          </div>
+        </Alert>
+      }
     </Item>
   );
 }

@@ -33,6 +33,7 @@ export default createGlobalStyle`
     --primary: #111;
     --secondary: #333;
     --title: #C80064;
+    --textMain: #EEE;
     --text: #DDD;
   }
 `

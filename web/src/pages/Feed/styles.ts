@@ -8,7 +8,7 @@ export const Container = styled.div`
   box-sizing: border-box;
 `
 
-export const Apresentation = styled.h1`
+export const Apresentation = styled.div`
   text-align: center;
   color: var(--title);
 
