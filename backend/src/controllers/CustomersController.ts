@@ -8,6 +8,7 @@ interface user {
   cpf: string,
   cep: string,
   phone: string,
+  approved: number,
 }
 
 interface address {
@@ -90,7 +91,7 @@ const CustomersController = {
       .where('id', id)
       .delete()
       .then(() => {
-        return response.status(200).json({ message: 'Success'})
+        return response.status(200).json({ message: 'Success' })
       })
       .catch(error => {
         return response.status(400).json(error)

@@ -6,7 +6,8 @@ export async function up (knex: Knex) {
     table.string('cpf').notNullable().unique()
     table.string('name').notNullable()
     table.string('email').notNullable()
-    table.string('telefone').notNullable()
+    table.string('phone').notNullable()
+    table.integer('approved').notNullable()
   })
 }
 

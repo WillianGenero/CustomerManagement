@@ -5,7 +5,7 @@ export async function up (knex: Knex) {
     table.increments('id').primary()
     table.string('cep').notNullable()
     table.string('city').notNullable()
-    table.string('state').notNullable()
+    table.string('state', 2).notNullable()
     table.string('district').notNullable()
     table.string('street').notNullable()
     table.integer('number').notNullable()
