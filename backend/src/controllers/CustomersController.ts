@@ -31,7 +31,7 @@ interface address {
 
 const CustomersController = {
   async index (request: Request, response: Response) {
-    const users = await connection('customers')
+    const customers = await connection('customers')
       .join('address', 'customers.id', '=', 'address.customer_id')
       .select('customers.*',
         'address.cep',
@@ -43,25 +43,20 @@ const CustomersController = {
         'address.complement',
         'address.typeAddress')
 
-    const customers = users.map((user: user) => {
-      return {
-        id: user.id,
-        name: user.name,
-        cpf: user.cpf,
-        address: [{
-          city: user.city,
-          cep: user.cep,
-          state: user.state,
-          district: user.district,
-          street: user.street,
-          number: user.number,
-          complement: user.complement,
-          type: user.typeAddress,
-        }]
-      }
-    })
+        const users_ids = [...new Set(customers.map(user_address => user_address.id))]
 
-    return response.json(customers)
+        const users = []
+
+        users_ids.forEach(user_id => {
+          const addresses = customers.filter(user_address => user_address.id === user_id)
+
+          users.push({
+            ...addresses[0],
+            addresses
+          })
+        })
+
+    return response.json(users)
   },
 
   async create (request: Request, response: Response) {
